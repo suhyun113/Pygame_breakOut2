@@ -39,10 +39,18 @@ class Block(Basic):
         # 블록이 공과 충돌했을 때 호출됩니다.
         # self.alive를 False로 설정합니다.
         # 해당 블록을 blocks 리스트에서 제거합니다.
-    
-        self.alive = False
-        if self in blocks:  # 리스트에서 블록 제거
-            blocks.remove(self)
+
+        # 블록을 다음 색상으로 변경
+        if self.color in config.colors:
+            current_index = config.colors.index(self.color)
+            if current_index < len(config.colors) -1:
+                # 다음 색사으로 변경
+                self.color = config.colors[current_index + 1]
+            else:
+                # 마지막 색상(노란색)인 경우 벽돌 제거
+                self.alive = False  # 마지막 색상에서 제거거
+                if self in blocks:  # 리스트에서 블록 제거
+                    blocks.remove(self)
 
         # 20% 확률로 아이템 생성
         # 아이템 생성 (전역 ITEMS 리스트를 참조하기 위해 import)

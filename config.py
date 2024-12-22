@@ -1,4 +1,6 @@
 # Setting for Blocks
+gray_block_prob = 0.3 # 회색 블록 생성 확률
+
 # Number of blocks
 num_blocks = (5, 3)
 # Size of margin
@@ -56,7 +58,12 @@ paddle_long_ratio = 2
 paddle_long_time = 5
 paddle_long_color = (0, 126, 255)
 
-colors = [(255, 0, 0), (255, 165, 0), (255, 255, 0)]
+colors = [
+    (128,128,128),  # 회색
+    (255, 0, 0),   # 빨간색
+    (255, 165, 0), # 주황색
+    (255, 255, 0)  # 노란색
+    ]
 collision_limit = len(colors) - 1
 
 # Total number of life.

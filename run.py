@@ -1,6 +1,7 @@
 import sys
 from implements import Basic, Block, Paddle, Ball
 import config
+import random
 
 import pygame
 from pygame.locals import QUIT, Rect, K_ESCAPE, K_SPACE
@@ -32,7 +33,15 @@ def create_blocks():
             )
             color_index = j % len(config.colors)
             color = config.colors[color_index]
-            block = Block(color, (x, y))
+
+            # 일부 블록 회색 블록으로 생성(30% 확률)
+            if random.random() < config.gray_block_prob:
+                color = config.colors[0] # 회색
+            else:
+                color_index = (j % (len(config.colors) - 1)) + 1 # 빨간색, 주황색, 노란색 중 선택
+                color = config.colors[color_index]
+                
+            block = Block(color=color, pos=(x, y))
             BLOCKS.append(block)
 
 
@@ -105,8 +114,8 @@ def main():
 
         cur_score = config.num_blocks[0] * config.num_blocks[1] - len(BLOCKS)
 
-        score_txt = my_font.render(f"Score : {cur_score * 10}", True, config.colors[2])
-        life_font = my_font.render(f"Life: {life}", True, config.colors[0])
+        score_txt = my_font.render(f"Score : {cur_score * 10}", True, config.colors[3])
+        life_font = my_font.render(f"Life: {life}", True, config.colors[1])
 
         surface.blit(score_txt, config.score_pos)
         surface.blit(life_font, config.life_pos)
