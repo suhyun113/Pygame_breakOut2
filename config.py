@@ -41,6 +41,7 @@ ball_size = (20, 20)
 item_speed = 5
 item_size = (20, 20)
 item_colors = [(255, 0, 0), (0, 0, 255)] # 빨간색, 파란색
+item_drop_prob = 0.2 # 아이템 드랍 확률
 one_more_prob = 0.3
 fever_prob = 0.1
 add_score_prob = 0.1
